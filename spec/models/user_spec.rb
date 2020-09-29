@@ -4,7 +4,14 @@ RSpec.describe User, type: :model do
   it { should have_secure_password }
   it { should validate_presence_of(:username).on(:create) }
   it { should validate_presence_of(:email).on(:create) }
+  it do
+    should validate_length_of(:password_digest).is_at_least(6).is_at_most(20)
+  end
+  it do
+    should validate_length_of(:username).is_at_least(3).is_at_most(10)
+  end
+
   # TODO
-  # password should have plus 6 lencgth.Email should have format matching an email
+  # should have format matching an email
   # password shoulkd have at least one number.
 end
