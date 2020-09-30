@@ -1,4 +1,4 @@
-module RequestSpecHelper # rubocop:disable Layout/EndOfLine
+module RequestSpecHelper
   # Parse JSON response to ruby hash
   def json
     JSON.parse(response.body)
