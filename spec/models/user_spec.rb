@@ -11,7 +11,8 @@ RSpec.describe User, type: :model do
     should validate_length_of(:username).is_at_least(3).is_at_most(10)
   end
 
-  # TODO
-  # should have format matching an email
-  # password shoulkd have at least one number.
+  # validates relations
+
+  it { should have_many :measurements }
+  # it { should have_many :measurement }
 end
