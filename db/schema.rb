@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_30_175334) do
+ActiveRecord::Schema.define(version: 2020_09_30_182045) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,8 +28,14 @@ ActiveRecord::Schema.define(version: 2020_09_30_175334) do
     t.string "comment"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "users_id"
+    t.bigint "measure_items_id"
     t.bigint "user_id"
+    t.bigint "measure_item_id"
+    t.index ["measure_item_id"], name: "index_measurements_on_measure_item_id"
+    t.index ["measure_items_id"], name: "index_measurements_on_measure_items_id"
     t.index ["user_id"], name: "index_measurements_on_user_id"
+    t.index ["users_id"], name: "index_measurements_on_users_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -41,5 +47,8 @@ ActiveRecord::Schema.define(version: 2020_09_30_175334) do
     t.index ["username", "email"], name: "index_users_on_username_and_email", unique: true
   end
 
+  add_foreign_key "measurements", "measure_items"
+  add_foreign_key "measurements", "measure_items", column: "measure_items_id"
   add_foreign_key "measurements", "users"
+  add_foreign_key "measurements", "users", column: "users_id"
 end
