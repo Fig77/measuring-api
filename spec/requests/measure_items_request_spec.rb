@@ -1,5 +1,4 @@
 require 'rails_helper'
-
 RSpec.describe 'MeasureItems', type: :request do
   let!(:MeasureItems) { create_list(:measure_item, 6) }
   describe 'GET /measure_items' do
