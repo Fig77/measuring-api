@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :measure_items, only: [:index, :show] do
+  resources :measure_items, as: 'measures', only: [:index, :show]  do
     resources :measurements
   end
 
