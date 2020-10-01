@@ -29,7 +29,7 @@ RSpec.describe 'MeasureItems', type: :request do
   end
 
   describe 'GET /measure_items/items when item does not exist' do
-    before { get "/measure_items/52342" }
+    before { get '/measure_items/52342' }
     it 'return status code 404' do
       expect(response).to have_http_status(404)
     end
@@ -37,7 +37,7 @@ RSpec.describe 'MeasureItems', type: :request do
 
   context 'when user is not an admin' do
     describe 'POST /admin/measure_items shoud return validation error' do
-      before { post "/admin/measure_items" }
+      before { post '/admin/measure_items' }
 
       it 'returns status code 401' do
         expect(response).to have_http_status(401)
@@ -55,7 +55,6 @@ RSpec.describe 'MeasureItems', type: :request do
         expect(response).to have_http_status(401)
       end
     end
-
 
     describe 'DESTROY /admin/measure_items/:id should return validation error' do
       before { destroy "/admin/measure_items/#{measure_id}" }
