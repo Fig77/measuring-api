@@ -1,4 +1,4 @@
-module ADMIN
+module Admin
   class MeasureItemsController < ApplicationController
     def index; end
 

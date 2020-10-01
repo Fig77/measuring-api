@@ -1,4 +1,4 @@
-module ADMIN
+module Admin
   class UsersController < ApplicationController
     def index; end
 
