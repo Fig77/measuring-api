@@ -40,7 +40,7 @@ RSpec.describe 'MeasureItems', type: :request do
       before { post '/admin/measure_items' }
 
       it 'returns status code 401' do
-        expect(response).to have_http_status(401)
+        expect(response).to have_http_status(403)
       end
 
       it 'expects to return unauthorized request' do
@@ -51,16 +51,16 @@ RSpec.describe 'MeasureItems', type: :request do
     describe 'PUT /admin/measure_items/:id should return validation error' do
       before { put "/admin/measure_items/#{measure_id}" }
 
-      it 'returns status code 401' do
-        expect(response).to have_http_status(401)
+      it 'returns status code 403' do
+        expect(response).to have_http_status(403)
       end
     end
 
     describe 'DESTROY /admin/measure_items/:id should return validation error' do
       before { destroy "/admin/measure_items/#{measure_id}" }
 
-      it 'returns status code 401' do
-        expect(response).to have_http_status(401)
+      it 'returns status code 403' do
+        expect(response).to have_http_status(403)
       end
     end
   end
