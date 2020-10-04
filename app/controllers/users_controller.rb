@@ -1,11 +1,9 @@
 class UsersController < ApplicationController
   skip_before_action :authorize_request, only: :authenticate
 
-  def create
-  end
+  def create; end
 
-  def update # only on himself
-  end
+  def update; end
 
   private
 
