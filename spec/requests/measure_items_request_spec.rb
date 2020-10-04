@@ -41,12 +41,12 @@ RSpec.describe 'MeasureItems', type: :request do
     describe 'POST /admin/measure_items shoud return validation error' do
       before { post '/admin/measure_items', params: {}, headers: headers }
 
-      it 'returns status code 401' do
+      it 'returns status code 403' do
         expect(response).to have_http_status(403)
       end
 
       it 'expects to return unauthorized request' do
-        expect(json.body).to eq('Unauthorized request')
+         expect(json['message']).to match(/Forbidden/)
       end
     end
 
