@@ -1,13 +1,18 @@
-module Admin
+module Admin 
   class UsersController < ApplicationController
-    def index
-      @users = User.all
-    end
+               before_action :is_admin?
 
-    def show; end
+               def index
+                 @users = User.all
+                 json_response(@users)
+               end
 
-    def update; end
+               def show
+                 @user = User.find(:user_id[])
+               end
 
-    def destroy; end
-  end
+               def update end
+
+               def destroy; end
+             end
 end
