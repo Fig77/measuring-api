@@ -1,10 +1,12 @@
 require 'rails_helper'
 RSpec.describe 'MeasureItems', type: :request do
+  let(:user) { create(:user) }
   let!(:measure_item) { create_list(:measure_item, 6) }
   let(:measure_id) { MeasureItem.first.id }
+  let(:headers) { valid_headers }
 
   describe 'GET /measure_items' do
-    before { get '/measure_items' }
+    before { get '/measure_items', params: {}, headers: headers }
     it 'Returns items to measure' do
       expect(json).not_to be_empty
       expect(json.size).to eq(6)
@@ -16,7 +18,7 @@ RSpec.describe 'MeasureItems', type: :request do
   end
 
   describe 'GET /measure_items/items' do
-    before { get "/measure_items/#{measure_id}" }
+    before { get "/measure_items/#{measure_id}", params: {}, headers: headers }
 
     it 'returns status code 200' do
       expect(response).to have_http_status(200)
@@ -29,7 +31,7 @@ RSpec.describe 'MeasureItems', type: :request do
   end
 
   describe 'GET /measure_items/items when item does not exist' do
-    before { get '/measure_items/52342' }
+    before { get '/measure_items/52342', params: {}, headers: headers }
     it 'return status code 404' do
       expect(response).to have_http_status(404)
     end
@@ -37,7 +39,7 @@ RSpec.describe 'MeasureItems', type: :request do
 
   context 'when user is not an admin' do
     describe 'POST /admin/measure_items shoud return validation error' do
-      before { post '/admin/measure_items' }
+      before { post '/admin/measure_items', params: {}, headers: headers }
 
       it 'returns status code 401' do
         expect(response).to have_http_status(403)
@@ -49,7 +51,7 @@ RSpec.describe 'MeasureItems', type: :request do
     end
 
     describe 'PUT /admin/measure_items/:id should return validation error' do
-      before { put "/admin/measure_items/#{measure_id}" }
+      before { put "/admin/measure_items/#{measure_id}" , params: {}, headers: headers}
 
       it 'returns status code 403' do
         expect(response).to have_http_status(403)
@@ -57,7 +59,7 @@ RSpec.describe 'MeasureItems', type: :request do
     end
 
     describe 'DESTROY /admin/measure_items/:id should return validation error' do
-      before { destroy "/admin/measure_items/#{measure_id}" }
+      before { destroy "/admin/measure_items/#{measure_id}", params: {}, headers: headers }
 
       it 'returns status code 403' do
         expect(response).to have_http_status(403)
