@@ -46,20 +46,20 @@ RSpec.describe 'MeasureItems', type: :request do
       end
 
       it 'expects to return unauthorized request' do
-         expect(json['message']).to match(/Forbidden/)
+        expect(json['message']).to match(/Forbidden/)
       end
     end
 
     describe 'PUT /admin/measure_items/:id should return validation error' do
-      before { put "/admin/measure_items/#{measure_id}" , params: {}, headers: headers}
+      before { put "/admin/measure_items/#{measure_id}", params: {}, headers: headers}
 
       it 'returns status code 403' do
         expect(response).to have_http_status(403)
       end
     end
 
-    describe 'DESTROY /admin/measure_items/:id should return validation error' do
-      before { destroy "/admin/measure_items/#{measure_id}", params: {}, headers: headers }
+    describe 'DELETE /admin/measure_items/:id should return validation error' do
+      before { delete "/admin/measure_items/#{measure_id}", params: {}, headers: headers }
 
       it 'returns status code 403' do
         expect(response).to have_http_status(403)
