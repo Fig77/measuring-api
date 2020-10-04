@@ -1,6 +1,6 @@
 require 'rails_helper'
 RSpec.describe 'MeasureItems', type: :request do
-  let(:user) { create(:user) }
+  let(:user) { create(:user_role) }
   let!(:measure_item) { create_list(:measure_item, 6) }
   let(:measure_id) { MeasureItem.first.id }
   let(:headers) { valid_headers }

@@ -16,7 +16,7 @@ module Admin
     private
 
     def admin?
-      return current_user if current_user.admin === true
+      return current_user if current_user.role.admin === true
 
       raise(ExceptionHandler::PermissionDenied, 'Forbbiden')
     end

@@ -1,12 +1,6 @@
 class Role < ApplicationRecord
-  before_save :default_values
-  has_many :user, through: :user_role
+  has_many :user_roles
+  has_many :users, through: :user_roles
 
-  validates_presence_of :name, :admin
-
-  private
-
-  def default_values
-    self.admin ||= false
-  end
+  validates_presence_of :name
 end

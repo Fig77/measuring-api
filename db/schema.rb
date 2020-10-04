@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_04_181738) do
+ActiveRecord::Schema.define(version: 2020_10_04_215717) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,11 +43,16 @@ ActiveRecord::Schema.define(version: 2020_10_04_181738) do
     t.boolean "admin"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user"
   end
 
   create_table "user_roles", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id"
+    t.bigint "role_id"
+    t.index ["role_id"], name: "index_user_roles_on_role_id"
+    t.index ["user_id"], name: "index_user_roles_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -56,6 +61,7 @@ ActiveRecord::Schema.define(version: 2020_10_04_181738) do
     t.string "password_digest", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "role"
     t.index ["username", "email"], name: "index_users_on_username_and_email", unique: true
   end
 
@@ -63,4 +69,6 @@ ActiveRecord::Schema.define(version: 2020_10_04_181738) do
   add_foreign_key "measurements", "measure_items", column: "measure_items_id"
   add_foreign_key "measurements", "users"
   add_foreign_key "measurements", "users", column: "users_id"
+  add_foreign_key "user_roles", "roles"
+  add_foreign_key "user_roles", "users"
 end
