@@ -6,19 +6,24 @@ class MeasurementsController < ApplicationController
     json_response(@measurements)
   end
 
-  def new; end
-
   def show
     json_response(@measurement)
   end
 
-  def create; end
+  def create
+    @measurement = current_user.measurements.create!(measurement_params)
+    json_response(@measurement, :created)
+  end
 
   def update; end
 
   def destroy; end
 
   private
+
+  def measurement_params
+    params.permit(:value, :comment, :measure_item_id)
+  end
 
   def set_measurement
     @measurement = Measurement.find(params[:id])
