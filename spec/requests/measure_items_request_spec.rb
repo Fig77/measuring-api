@@ -37,8 +37,9 @@ RSpec.describe 'MeasureItems', type: :request do
     end
   end
 
-  context 'when user is not an admin' do
-    describe 'POST /admin/measure_items shoud return validation error' do
+  describe 'POST /admin/measure_items shoud return validation error' do
+    context 'when user is not an admin' do
+      let(:user) { create(:user_role).user }
       before { post '/admin/measure_items', params: {}, headers: headers }
 
       it 'returns status code 403' do
@@ -50,7 +51,19 @@ RSpec.describe 'MeasureItems', type: :request do
       end
     end
 
-    describe 'PUT /admin/measure_items/:id should return validation error' do
+    context 'when user is admin' do
+      let(:user) { create(:user_role, :admin).user }
+      let(:valid_params) { { name: 'Blood Peassure', description: '0 should be fine' }.to_json }
+      before { post '/admin/measure_items', params: valid_params, headers: headers }
+
+      it 'Should return status code 201' do
+        expect(response).to have_http_status(201)
+      end
+    end
+  end
+
+  describe 'PUT /admin/measure_items/:id should return validation error' do
+    context 'when user is not an admin' do
       before { put "/admin/measure_items/#{measure_id}", params: {}, headers: headers }
 
       it 'returns status code 403' do
@@ -58,11 +71,32 @@ RSpec.describe 'MeasureItems', type: :request do
       end
     end
 
-    describe 'DELETE /admin/measure_items/:id should return validation error' do
+    context 'when user is an admin' do
+      let(:user) { create(:user_role, :admin).user }
+      before { put "/admin/measure_items/#{measure_id}", params: {}, headers: headers }
+
+      it 'returns status code 204' do
+        expect(response).to have_http_status(204)
+      end
+    end
+  end
+
+  describe 'DELETE /admin/measure_items/:id should return validation error' do
+    context 'when user is not an admin' do
       before { delete "/admin/measure_items/#{measure_id}", params: {}, headers: headers }
 
       it 'returns status code 403' do
         expect(response).to have_http_status(403)
+      end
+    end
+
+    context 'when user is an admin' do
+      let(:user) { create(:user_role, :admin).user }
+      before { delete "/admin/measure_items/#{measure_id}", params: {}, headers: headers }
+
+
+      it 'should return status code 204' do
+        expect(response).to have_http_status(204)
       end
     end
   end

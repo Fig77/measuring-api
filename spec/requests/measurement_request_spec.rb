@@ -85,7 +85,7 @@ RSpec.describe 'Measurements', type: :request do
     it 'should not find the record' do
       get "/measurements/#{measurement_id}", params: {}, headers: headers
 
-      expect(response).to have_http_status(404 )
+      expect(response).to have_http_status(404)
     end
   end
 end

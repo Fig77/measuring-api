@@ -4,6 +4,6 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :users, only: [:index, :show, :update, :destroy]
-    resources :measure_items, only: [:new, :create, :update, :destroy]
+    resources :measure_items, only: [:create, :update, :destroy]
   end
 end
