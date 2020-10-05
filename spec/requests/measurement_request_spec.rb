@@ -9,7 +9,7 @@ RSpec.describe 'Measurements', type: :request do
   let(:headers) { valid_headers }
 
   describe 'GET measure_item/measure_item_id/measurements' do
-    before { get "/measurements",  params: {}, headers: headers }
+    before { get "/measurements", params: {}, headers: headers }
 
     it 'Should return 20 items' do
       expect(json).not_to be_empty

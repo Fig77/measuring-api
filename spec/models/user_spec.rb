@@ -9,7 +9,7 @@ RSpec.describe User, type: :model do
   it { should validate_uniqueness_of(:email) }
 
   it do
-    should validate_length_of(:password_digest).is_at_least(6).is_at_most(20)
+    should validate_length_of(:password).is_at_least(6).is_at_most(20)
   end
   it do
     should validate_length_of(:username).is_at_least(3).is_at_most(10)
