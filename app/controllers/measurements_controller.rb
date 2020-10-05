@@ -6,18 +6,24 @@ class MeasurementsController < ApplicationController
     json_response(@measurements)
   end
 
-  def show
-    json_response(@measurement)
-  end
-
   def create
     @measurement = current_user.measurements.create!(measurement_params)
     json_response(@measurement, :created)
   end
 
-  def update; end
+  def show
+    json_response(@measurement)
+  end
 
-  def destroy; end
+  def update
+    @measurement.update(measurement_params)
+    head :no_content
+  end
+
+  def destroy
+    @measurement.destroy
+    head :no_content
+  end
 
   private
 

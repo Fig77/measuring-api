@@ -22,7 +22,12 @@ RSpec.describe 'Measurements', type: :request do
   end
 
   describe 'GET measurements/measurement_id' do
-    before {get "/measurements/#{measurement_id}", params: {}, headers: headers }
+    before { get "/measurements/#{measurement_id}", params: {}, headers: headers }
+
+    it 'Should return a valid measurement' do
+      expect(json).not_to be_empty
+      expect(json['value']).to eq(2)
+    end
 
     it 'Returns a 200 response' do
       expect(response).to have_http_status(200)
@@ -43,12 +48,38 @@ RSpec.describe 'Measurements', type: :request do
         expect(response).to have_http_status(201)
       end
     end
+
+    context 'invalid request' do
+      let(:invalid_attributes) { { comment: 'you are on air' }.to_json }
+      before { post "/measurements/", params: invalid_attributes, headers: headers }
+
+      it 'Shoudl return status code 422' do
+        expect(response).to have_http_status(422)
+      end
+    end
   end
 
-  # describe 'POST /measurement_id' do
-  #   before { post '/measurements', params: {}, headers: headers }
-  #   it 'Returns a 204 response' do
-  #     expect(response).to have_http_status(204)
-  #   end
-  # end
+  describe 'PUT /measurements/measurement_id' do
+    let(:valid_attributes) { { value: 7, comment: 'Today snow is criplling [...]', measure_item_id: type_id }.to_json }
+
+    context 'valid request' do
+      before { put "/measurements/#{measurement_id}", params: valid_attributes, headers: headers }
+
+      it 'Should update content' do
+        expect(response.body).to be_empty
+      end
+
+      it 'should return status code 204' do
+        expect(response).to have_http_status(204)
+      end
+    end
+  end
+
+  describe 'DELETE /measurements/measujrement_id' do
+    before { delete "/measurements/#{measurement_id}", params:{}, headers: headers }
+
+    it 'should return status code 204' do
+      expect(response).to have_http_status(204)
+    end
+  end
 end
