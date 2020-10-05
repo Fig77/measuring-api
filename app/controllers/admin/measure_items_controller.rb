@@ -1,7 +1,7 @@
 module Admin
   class MeasureItemsController < ApplicationController
     before_action :admin?
-    before_action :measure_item, only: [:show, :update, :destroy]
+    before_action :measure_item, only: %i[show update destroy]
 
     def index
       @measure_items = MeasureItem.all

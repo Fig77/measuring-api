@@ -51,7 +51,7 @@ RSpec.describe 'MeasureItems', type: :request do
     end
 
     describe 'PUT /admin/measure_items/:id should return validation error' do
-      before { put "/admin/measure_items/#{measure_id}", params: {}, headers: headers}
+      before { put "/admin/measure_items/#{measure_id}", params: {}, headers: headers }
 
       it 'returns status code 403' do
         expect(response).to have_http_status(403)
