@@ -1,6 +1,7 @@
 FactoryBot.define do
-  factory :measurements do
+  factory :measurement do
     value { 2 }
-    measure_items_id nil
+    measure_item nil
+    user nil
   end
 end

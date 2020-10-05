@@ -2,8 +2,8 @@ class MeasureItemsController < ApplicationController
   before_action :set_measure, only: [:show]
 
   def index
-    @meaures = MeasureItem.all
-    json_response(@meaures)
+    @measures = MeasureItem.all
+    json_response(@measures)
   end
 
   def show
