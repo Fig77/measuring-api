@@ -34,7 +34,7 @@ RSpec.describe 'Measurements', type: :request do
     end
   end
 
- describe 'POST /measurements' do
+  describe 'POST /measurements' do
     let(:valid_attributes) { { value: 2, comment: 'I so pale', measure_item_id: type_id }.to_json }
 
     context 'when the request is valid' do
@@ -51,7 +51,7 @@ RSpec.describe 'Measurements', type: :request do
 
     context 'invalid request' do
       let(:invalid_attributes) { { comment: 'you are on air' }.to_json }
-      before { post "/measurements/", params: invalid_attributes, headers: headers }
+      before { post '/measurements/', params: invalid_attributes, headers: headers }
 
       it 'Shoudl return status code 422' do
         expect(response).to have_http_status(422)
@@ -76,10 +76,16 @@ RSpec.describe 'Measurements', type: :request do
   end
 
   describe 'DELETE /measurements/measujrement_id' do
-    before { delete "/measurements/#{measurement_id}", params:{}, headers: headers }
+    before { delete "/measurements/#{measurement_id}", params: {}, headers: headers }
 
     it 'should return status code 204' do
       expect(response).to have_http_status(204)
+    end
+
+    it 'should not find the record' do
+      get "/measurements/#{measurement_id}", params: {}, headers: headers
+
+      expect(response).to have_http_status(404 )
     end
   end
 end
