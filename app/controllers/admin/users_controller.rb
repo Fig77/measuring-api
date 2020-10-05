@@ -1,1 +1,2 @@
-module Admin end
+module Admin
+end
