@@ -1,4 +1,5 @@
 require 'rails_helper'
+
 RSpec.describe 'MeasureItems', type: :request do
   let(:user) { create(:user_role).user }
   let!(:measure_item) { create_list(:measure_item, 6) }
@@ -93,7 +94,6 @@ RSpec.describe 'MeasureItems', type: :request do
     context 'when user is an admin' do
       let(:user) { create(:user_role, :admin).user }
       before { delete "/admin/measure_items/#{measure_id}", params: {}, headers: headers }
-
 
       it 'should return status code 204' do
         expect(response).to have_http_status(204)
