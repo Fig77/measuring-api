@@ -1,22 +1,18 @@
 class MeasureItemsController < ApplicationController
-  before_action :set_measure, only: [:show]
+  before_action :measure_item, only: [:show]
 
   def index
-    @measures = MeasureItem.all
-    json_response(@measures)
+    @measure_items = MeasureItem.all
+    json_response(@measure_items)
   end
 
   def show
-    json_response(@measure)
+    json_response(@measure_item)
   end
 
   private
 
-  def measure_params
-    params.permit(:name, :description)
-  end
-
-  def set_measure
-    @measure = MeasureItem.find(params[:id])
+  def measure_item
+    @measure_item ||= MeasureItem.find(params[:id])
   end
 end
