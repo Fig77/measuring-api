@@ -4,7 +4,7 @@ class User < ApplicationRecord
   has_one :user_role
   has_one :role, through: :user_role
 
-  validates_presence_of :username, :email, :password_digest
+  validates_presence_of :username, :email
   validates :username, uniqueness: true
   validates :email, uniqueness: true
   validates :password, length: { in: 6..20 }
