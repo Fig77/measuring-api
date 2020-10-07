@@ -1,5 +1,5 @@
 module Admin
-  class MeasureItemsController < ApplicationController
+  class UsersController < ApplicationController
     before_action :admin?
 
     def index
@@ -18,7 +18,7 @@ module Admin
     end
 
     private
-  
+
     def admin?
       return current_user if current_user.role.admin === true
 
