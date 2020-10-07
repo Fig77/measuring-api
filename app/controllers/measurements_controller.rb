@@ -2,7 +2,7 @@ class MeasurementsController < ApplicationController
   before_action :set_measurement, only: %i[show update destroy]
 
   def index
-    @measurements = Measurement.all
+    @measurements = current_user.measurements.all
     json_response(@measurements)
   end
 
@@ -32,6 +32,6 @@ class MeasurementsController < ApplicationController
   end
 
   def set_measurement
-    @measurement = Measurement.find(params[:id])
+    @measurement = current_user.measurements.find(params[:id])
   end
 end

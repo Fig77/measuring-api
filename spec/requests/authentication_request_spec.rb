@@ -5,7 +5,7 @@ RSpec.describe 'Authentications', type: :request do
     let!(:user) { create(:user) }
     let(:headers) { valid_headers.except('Authorization') }
     let(:valid_credentials) do
-      { email: user.email, password: user.password }.to_json
+      { username: user.username, password: user.password }.to_json
     end
     let(:invalid_credentials) do
       { email: Faker::Internet.email, password: Faker::Internet.password }.to_json
