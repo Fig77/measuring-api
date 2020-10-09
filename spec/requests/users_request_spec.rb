@@ -6,7 +6,7 @@ RSpec.describe 'Users', type: :request do
 
   describe 'POST /signup' do
     context 'when valid request' do
-      before { post '/signup', params: user.to_json, headers: headers }
+      before { post '/signup', params: {user:{username:'foobar', email:'email@foo.com', password:'password'}}.to_json, headers: headers }
 
       it 'creates a new user' do
         expect(response).to have_http_status(201)
@@ -22,7 +22,7 @@ RSpec.describe 'Users', type: :request do
     end
 
     context 'when invalid request' do
-      before { post '/signup', params: {}, headers: headers }
+      before { post '/signup', params: { user:{username:'', email:'', password:''} }.to_json, headers: headers }
 
       it 'does not create a new user' do
         expect(response).to have_http_status(422)
