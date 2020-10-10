@@ -6,7 +6,7 @@ This API works as support for tracking systems. Allows to create users, with two
 
 ## ReadMe disclaimer
 
-This ReadMe is the current documentation during development process, will not be de final version, information might be missing or pending to add, as well as proper formating and overall API doc. Rspec errors are warning are not completly clean at this point.
+This ReadMe is the current documentation during development process, will not be de final version, information might be missing or pending to add, as well as proper formating and overall API doc. rubocop errors are warning are not completly clean at this point.
 
 ## Index
 - [Current Features](#current-features-applied)
