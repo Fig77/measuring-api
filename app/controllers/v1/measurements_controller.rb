@@ -1,10 +1,10 @@
 module V1
   class MeasurementsController < ApplicationController
     before_action :set_measurement, only: %i[show update destroy]
-    before_action :set_todays, only: :index
+    before_action :todays_measure, only: :index
 
     def index
-      if @todays
+      if params[:today]
         json_response(@todays)
       else
         @measurements = current_user.measurements.all
@@ -41,8 +41,9 @@ module V1
       @measurement = current_user.measurements.find(params[:id])
     end
 
-    def set_todays
-      @todays ||= current_user.measurements.today if params[:today]
+    def todays_measure
+      params.permit(:today)
+      @todays ||= current_user.measurements.today
     end
   end
 end
