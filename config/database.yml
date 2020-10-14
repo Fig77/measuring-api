@@ -85,5 +85,3 @@ test:
 production:
   <<: *default
   database: tracking_production
-  username: trackinguser
-  password: <%= ENV['TRACKING_DATABASE_PASSWORD'] %>
