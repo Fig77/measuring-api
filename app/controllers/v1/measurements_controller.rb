@@ -29,7 +29,7 @@ module V1
     private
 
     def measurement_params
-      params.permit(:value, :comment, :measure_item_id)
+      params.permit(:value, :comment, :measure_item_id, :date)
     end
 
     def set_measurement
