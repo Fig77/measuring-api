@@ -1,16 +1,16 @@
-# API developer version readme - pre release
+# API developer version readme - prerelease
 
 ## Introduction
 
-This API works as support for tracking systems. Allows to create users, with two default roles (Admin and User), to create items to measure, and measurements.
+This API works as a support for tracking systems. Allows creating users, with two default roles (Admin and User), to create items to measure and measurements.
 
 ## ReadMe disclaimer
 
-This ReadMe is the current documentation during development process, will not be de final version, information might be missing or pending to add, as well as proper formating and overall API doc. rubocop errors are warning are not completly clean at this point.
+This ReadMe is the current documentation during the development process, will not be de final version, information might be missing or pending to add, as well as proper formatting and overall API doc. rubocop errors are warning are not completely clean at this point.
 
 ## Index
 - [Current Features](#current-features-applied)
-- [Quick start](#quick-start)
+- [Quick start](#quickstart)
 - [Roles and end point](#roles-claim)
 
 ## Current Features applied
@@ -22,12 +22,13 @@ This ReadMe is the current documentation during development process, will not be
 - Secret/token api key.
 - Rspec testing.
 - Postgres database.
+- Admin default behavior.
 ## Missing:
-* Full functionality of user admin.
-* Compliments around models to get more complex data while being effective for the frontend and backend.
-* versioning and serialization.
+* serialization.
+* Additional scopes might be added.
+* Additional Queries for getting specific dates and other target data.
 
-## Quick start
+## Quickstart
 *RUBY VERSION USED IN DEVELOPMENT WAS 2.7.1*
 - Install ruby version 2.7.X+ and set it with your ruby environment manager
   ([more info here](https://www.ruby-lang.org/en/documentation/installation/)).
@@ -65,13 +66,13 @@ rails db:migrate
 rspec .
 ```
 
-- That's it, you app is lock and loaded!
+- To start server
 
 ```
 rails s
 ```
 
-Locally the system resouces can be accessed at the local base url, check console output to see where is it mounted. Ej:
+Locally the system resources can be accessed at the local base URL, check console output to see where is it mounted. Ej:
 
 ```
 http://localhost:3000
@@ -81,7 +82,7 @@ http://localhost:3000
 
 ### Authentication
 
-Authentication is performed using JSON Web Tokens. JSON Web Tokens are an open, industry standard [RFC 7519](https://tools.ietf.org/html/rfc7519) method for representing claims securely between two parties. When the user successfully logs in using their credentials, a JSON Web Token will be returned, which should be kept by clients in
+Authentication is performed using JSON Web Tokens. JSON Web Tokens are an open, industry-standard [RFC 7519](https://tools.ietf.org/html/rfc7519) method for representing claims securely between two parties. When the user successfully logs in using their credentials, a JSON Web Token will be returned, which should be kept by clients in
 local storage (no cookies):
 
 ```
@@ -95,7 +96,7 @@ Whenever the user wants to access a protected route or resource, the user agent 
 ### Roles Claim
   Important note
 ```
-Not all actions for ADMIN is currently created, for now an admin can create by default the items to measure. Since there is no particular seed at this point, you need to manually add an admin. To do this, you must: Create a new user, with username:unique:string, password, email:unique:string. Create a new Role, with name:unique:string, admin:bool, and unite them with the UserRole through table.
+Not all actions for ADMIN is currently created, for now, an admin can create by default the items to measure, has control over uses and measurements. Since there is no particular seed at this point, you need to manually add an admin. To do this, you must: Create a new user, with username:unique:string, password, email:unique:string. Create a new Role, with name:unique:string, admin:bool, and unite them with the UserRole through the table.
 ```
 
 #### Admin role
@@ -124,9 +125,10 @@ Not all actions for ADMIN is currently created, for now an admin can create by d
 | POST /signup              | Register a new user: expects username:string:unique, email:string:unique and password.                   |
 | POST /auth/login          | Login in a user expects username:string and password:string                      |
 | GET /measure_items        | Fetch all approved vets profile. expects auth_token with the user token, that you can get when login a valid user.       |
-| POST /measurements        | Creates new measurement. expects value and the id of the item that is being mesuere.|
-| GET /measurements          | Get the users measures.   expects user token.|
-| POST /measure_items        | ADMIN: creates a new measure item. Expects user token. User must be an admin. |
+| POST /measurements        | Creates new measurement. expects value and the id of the item that is being measured.|
+| GET /measurements            | Get the users' measures.   expects user token.|
+| GET /measurements?today=true | Will bring only items for the current date. |
+| POST /measure_items        | ADMIN: creates a new measure item. Expects user token. The user must be an admin. |
 
 
 ## Live Version
