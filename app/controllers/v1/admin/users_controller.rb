@@ -16,7 +16,7 @@ module V1
       private
 
       def admin?
-        return current_user if current_user.role.admin === true
+        return current_user if current_user.role.admin === true # rubocop:disable Style/CaseEquality
 
         raise(ExceptionHandler::PermissionDenied, 'Forbidden')
       end

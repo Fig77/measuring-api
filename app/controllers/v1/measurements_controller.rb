@@ -5,7 +5,7 @@ module V1
 
     def index
       if params[:today]
-        json_response(@todays)
+        json_response(@todays_measure)
       else
         @measurements = current_user.measurements.all
         json_response(@measurements)
@@ -43,7 +43,7 @@ module V1
 
     def todays_measure
       params.permit(:today)
-      @todays ||= current_user.measurements.today
+      @todays_measure ||= current_user.measurements.today
     end
   end
 end
