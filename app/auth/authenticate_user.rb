@@ -16,6 +16,6 @@ class AuthenticateUser
     user = User.find_by(username: username)
     return user if user&.authenticate(password)
 
-    raise(ExceptionHandler::AuthenticationError, /Invalid credentials/)
+    raise(ExceptionHandler::AuthenticationError, "Your username or password is not correct")
   end
 end
