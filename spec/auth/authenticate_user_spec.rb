@@ -17,7 +17,7 @@ RSpec.describe AuthenticateUser do
         expect { invalid_auth_obj.call }
           .to raise_error(
             ExceptionHandler::AuthenticationError,
-            "Your username or password is not correct"
+            'Your username or password is not correct'
           )
       end
     end
