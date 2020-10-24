@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     resources :measure_items, only: [:index, :show]
     resources :measurements
     get '/measurements', to: 'measurements#index', as: "today_measure"
+    get '/measurements', to: 'measurements#index', as: "from_to"
 
     namespace :admin do
       resources :users, only: [:index, :show, :update, :destroy]

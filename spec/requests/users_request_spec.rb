@@ -13,7 +13,7 @@ RSpec.describe 'Users', type: :request do
       end
 
       it 'returns success message' do
-        expect(json['message']).to match(/Account created successfully/)
+        expect(json['message']).to match('Account created successfully')
       end
 
       it 'returns an authentication token' do
