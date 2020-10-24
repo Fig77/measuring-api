@@ -2,10 +2,13 @@ module V1
   class MeasurementsController < ApplicationController
     before_action :set_measurement, only: %i[show update destroy]
     before_action :todays_measure, only: :index
+    before_action :from_to, only: :index
 
     def index
       if params[:today]
         json_response(@todays_measure)
+      elsif params[:from] && params[:to]
+        json_response(@from_to)
       else
         @measurements = current_user.measurements.all
         json_response(@measurements)
@@ -34,7 +37,7 @@ module V1
     private
 
     def measurement_params
-      params.permit(:value, :comment, :measure_item_id, :date)
+      params.permit(:value, :comment, :measure_item_id, :date, :from, :to)
     end
 
     def set_measurement
@@ -42,8 +45,11 @@ module V1
     end
 
     def todays_measure
-      params.permit(:today)
       @todays_measure ||= current_user.measurements.today
+    end
+
+    def from_to
+      @from_to ||= current_user.measurements.where(date: (params[:from]..params[:to]))
     end
   end
 end
