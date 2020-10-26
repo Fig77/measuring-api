@@ -128,13 +128,14 @@ Not all actions for ADMIN is currently created, for now, an admin can create by 
 | POST /measurements        | Creates new measurement. expects value and the id of the item that is being measured.|
 | GET /measurements            | Get the users' measures.   expects user token.|
 | GET /measurements?today=true | Will bring only items for the current date. |
+| GET /measurements?from=${day}&to=${day} | Will bring measures from day A to day B
 | POST /measure_items        | ADMIN: creates a new measure item. Expects user token. The user must be an admin. |
 
 
 ## Live Version
 
-This is the link to the live preview in Heroku. Consist of the base URL<br>
-[API deploy development version](https://obscure-sands-00808.herokuapp.com)<br>
+API live version
+https://measurements-api.herokuapp.com/
 
 <!-- CONTACT -->
 
