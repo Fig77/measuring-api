@@ -1,3 +1,17 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  scope module: :v1, constraints: ApiVersion.new('v1', true) do
+    resources :measure_items, only: [:index, :show]
+    resources :measurements
+    get '/measurements', to: 'measurements#index', as: "today_measure"
+    get '/measurements', to: 'measurements#index', as: "from_to"
+
+    namespace :admin do
+      resources :users, only: [:index, :show, :update, :destroy]
+      resources :measure_items, only: [:create, :update, :destroy]
+    end
+  end
+
+  post 'auth/login', to: 'authentication#authenticate'
+  post '/signup', to: 'users#create'
 end
