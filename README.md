@@ -20,7 +20,7 @@ This ReadMe is the current documentation during the development process, will no
 - RESTful api.
 - Deploy version on heroku.
 - Users management.
-- Items to measure and measurements management. (Missing time column)
+- Items to measure and measurements management.
 - Secret/token api key.
 - Rspec testing.
 - Postgres database.
