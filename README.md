@@ -2,6 +2,10 @@
 [![Project Status: Concept – Minimal or no implementation has been done yet, or the repository is only intended to be a limited example, demo, or proof-of-concept.](https://www.repostatus.org/badges/latest/concept.svg)](https://www.repostatus.org/#concept)
 # API developer version readme - 
 
+## Disclaimer
+
+As of today, 24/sep/25, this is **beyond** unsupported and not maintained anymore. After a process of curation due to my **digital hygiene** policies I decided to keep this one alived as some minimal reference of "look, I've been learning to do these thigns since before IA ok?". I do not recommend cloning and usage unless you know what you are doing since is outdated. Be mindful of dependencies and **supply chain attacks**.
+
 ## Introduction
 
 This API works as a support for tracking systems. Allows creating users, with two default roles (Admin and User), to create items to measure and measurements.
