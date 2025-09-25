@@ -4,7 +4,7 @@
 
 ## Disclaimer
 
-As of today, 24/sep/25, this is **beyond** unsupported and not maintained anymore. After a process of curation due to my **digital hygiene** policies I decided to keep this one alived as some minimal reference (on github) of "look, I've been learning to do these thigns since before AI ok?". I do not recommend cloning and usage unless you know what you are doing since is outdated. Be mindful of dependencies and **supply chain attacks**.
+As of today, 24/sep/25, this is **beyond** unsupported and not maintained anymore. After a process of curation due to my **digital hygiene** policies I decided to keep this one alived as some minimal reference (on github) of "look, I've been learning to do these things since before AI ok?". I do not recommend cloning and usage unless you know what you are doing since is outdated. Be mindful of dependencies and **supply chain attacks**.
 
 ## Introduction
 
